@@ -200,6 +200,7 @@ addon_documentation = [
 ]
 
 addon_code_format = [
+  "radon==6.0.1",
   "bandit==1.8.5",
   "flake8==7.3.0",
   "flake8-black==0.3.6",

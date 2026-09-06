@@ -805,6 +805,12 @@ def run_qc_test(c, platform=PLATFORM, env=DEV_ENV, fail=False):
         c.run(f"""python -m black --check "{SOURCE_FOLDER}" """, warn=(not fail))
 
 
+@task(name="complexity")
+def report_complexity(c, path="src"):
+    """Report cyclomatic complexity from the base environment using Radon."""
+    c.run(f'''radon cc "{path}" --show-complexity --average --exclude "*/tests/*"''')
+
+
 @task(name="unittest")
 def run_unit_tests(c, platform=PLATFORM, env=DEV_ENV, markers=None):
     env_name = _get_env_name(env)
@@ -1021,6 +1027,7 @@ def validate_env(
 _create_task_collection(
     "test",
     run_qc_test,
+    report_complexity,
     run_vulnerability_test,
     run_unit_tests,
     run_all_tests,
@@ -1142,6 +1149,7 @@ _create_task_collection(
 # FIXME: refactor defaults (constants) and set them as config after
 # auto-detecting them
 ns = _create_root_task_collection()
+ns.add_task(report_complexity)
 config = dict(pty=True, echo=True)
 
 if OS == "windows":

@@ -52,7 +52,10 @@ def train_model(context, params):
     train_X = train_X[curated_columns]
 
     # create training pipeline
-    reg_ppln_ols = Pipeline([("estimator", SKLStatsmodelOLS())])
+    model_params = params.get("model_params", {})
+    reg_ppln_ols = Pipeline(
+        [("estimator", SKLStatsmodelOLS(**model_params))]
+    )
 
     # fit the training pipeline
     reg_ppln_ols.fit(train_X, train_y.values.ravel())
