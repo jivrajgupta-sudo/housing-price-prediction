@@ -1,0 +1,8 @@
+dataset_path: ../../data/raw/housing/housing.csv
+target_column: SalePrice
+test_size: 0.2
+random_state: 42
+model:
+  n_estimators: 300
+  max_depth: null
+  min_samples_leaf: 1

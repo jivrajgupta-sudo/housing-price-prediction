@@ -37,6 +37,8 @@ jobs:
           - name: "train-model"
             params:
               sampling_fraction: 0.1
+              model_params:
+                fit_intercept: true
 
   - name: model-eval
     stages:

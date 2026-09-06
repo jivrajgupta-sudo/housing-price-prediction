@@ -14,6 +14,7 @@ Welcome to Project_X documentation!
    developer_guide
    api_guide
    user_guide
+   user_guide/housing_price
    best_practices
 
 
